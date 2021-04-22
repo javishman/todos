@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Todo } from 'src/app/models/todo';
+import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoFormComponent implements OnInit {
 
-  constructor() { }
+  todo! : Todo
+
+  constructor(private todoService : TodoService) { }
 
   ngOnInit(): void {
+    this.todo = new Todo();
+  }
+
+  onSubmit(form : NgForm) : void {
+    if (!form.valid) return;
+
+    this.todoService.addTodo(this.todo);
+
+    this.clear(form);
+  }
+
+  clear(form : NgForm) : void {
+    this.todo = new Todo();
+
+    form.reset();
   }
 
 }

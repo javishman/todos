@@ -1,1 +1,42 @@
-<p>todos works!</p>
+<div class="card">
+    <div class="card-header">Todos</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="md-col-6">
+                <label for="searchText">Search:</label>
+                <input type="text" name="searchText" id="searchText" class="form-control" [(ngModel)]="searchText">
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Todo</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let todo of filteredTodos">
+                        <td>
+                            {{todo.id}}
+                        </td>
+                        <td>
+                            {{todo.name}}
+                        </td>
+                        <td>
+                            <!-- <button type="button" class="btn btn-link">Edit</button> -->
+                            <!-- <a [routerLink]="['/edit','todo.id']" routerLinkActive="router-link-active">Edit</a>  -->
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-link" (click)="deleteTodo(todo)">Delete</button>
+                            <!-- <a [routerLink]="['/delete','todo.id']" routerLinkActive="router-link-active">Delete</a> -->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer"></div>
+    </div>
+</div>
